@@ -1,0 +1,12 @@
+# To run with script with a specific environment ------------------------------------------
+npm install -g dotenv-cli
+
+# Local Machine ---------------------------------------------------------------------------
+dotenv -e .env.local.dev -- npx prisma migrate dev --name <migration-name>
+dotenv -e .env.local.dev -- npx prisma migrate deploy
+
+# Test Server   ---------------------------------------------------------------------------
+dotenv -e .env.server.dev -- npx prisma migrate deploy
+
+# References    ---------------------------------------------------------------------------
+https://www.prisma.io/docs/orm/prisma-migrate/workflows/development-and-production
