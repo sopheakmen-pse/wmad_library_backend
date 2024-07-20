@@ -1,0 +1,26 @@
+- User Authentication - Register User 
+- User Authentication - Loging User 
+- User Authentication - Reset Password
+- Book Catalog - List Book Catalog - Support Pagination
+- Book Catalog - List Book Catalog - Support Search By Title, Author, ISBN
+- Book Catalog - Create a new catalog
+- Book Catalog - Update a catalog 
+- Book Catalog - Delete a catalog
+- Book Catalog - Get a catalog by ISBN
+- Book Issue - List Book Issue - Support Pagination
+- Book Issue - List Book Issue - Support Search By Title, Author, ISBN
+- Book Issue - List Book Issue - Support Filter By Status
+- Book Issue - Create a new issue 
+- Book Issue - Update an issue 
+- Book Issue - Delete an issue
+- Book Issue - Get an issue by transaction code
+- Book Issue - Update a Book issue as return
+- Member - List Member - Support Pagination
+- Member - List Member - Support Search By Name, Email, Phone
+- Member - Create a new member 
+- Member - Update a member
+- Member - Delete a member
+- Member - Get a member by member code
+- Report - Inventory Report 
+- Report - Book Issue 
+- Report - Member Report 
