@@ -24,3 +24,27 @@
 - Report - Inventory Report 
 - Report - Book Issue 
 - Report - Member Report 
+
+feature/auth-register-user
+feature/auth-login-user
+feature/auth-reset-password
+feature/book-catalog-list-pagination
+feature/book-catalog-list-search
+feature/book-catalog-create
+feature/book-catalog-update
+feature/book-catalog-delete
+feature/book-catalog-get-by-isbn
+feature/book-issue-list-pagination
+feature/book-issue-list-search
+feature/book-issue-list-filter-status
+feature/book-issue-create
+feature/book-issue-update
+feature/book-issue-delete
+feature/book-issue-get-by-transaction-code
+feature/book-issue-update-return
+feature/member-list-pagination
+feature/member-list-search
+feature/member-create
+feature/member-update
+feature/member-delete
+feature/member-get-by-member-code
