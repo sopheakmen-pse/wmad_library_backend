@@ -97,7 +97,7 @@ const setupSwagger = (app: Express) => {
   if (process.env.NODE_ENV === "production") {
     app.use(
       "/api-docs",
-      express.static("node_modules/swagger-ui-dist/", { index: false }),
+      express.static("./swagger-ui-dist/", { index: false }),
       swaggerUi.serve,
       swaggerUi.setup(swaggerSpec)
     );
