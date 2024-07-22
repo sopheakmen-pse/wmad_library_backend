@@ -18,11 +18,71 @@ model user_account {
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
 
-  user_role user_role @relation(fields: [user_role_id], references: [id])
+  user_role  user_role    @relation(fields: [user_role_id], references: [id])
+  book_issue book_issue[]
 }
 
 model user_role {
   id             Int            @id @default(autoincrement())
   user_role_name String
   users          user_account[]
+}
+
+model book {
+  id               Int          @id @default(autoincrement())
+  title            String
+  authors          String
+  isbn             String       @unique
+  publisher        String
+  publication_year Int
+  edition          String
+  genre            String
+  language         String
+  number_of_pages  Int
+  cover_image_url  String?
+  shelf_location   String
+  description      String
+  created_at       DateTime     @default(now())
+  updated_at       DateTime     @updatedAt
+  book_issue       book_issue[]
+}
+
+model member {
+  id            Int          @id @default(autoincrement())
+  member_code   String       @unique
+  fullname      String
+  date_of_birth DateTime
+  address       String
+  phone_number  String
+  email         String       @unique
+  start_date    DateTime
+  expiry_date   DateTime
+  is_active     Boolean      @default(true)
+  book_issues   book_issue[]
+  created_at    DateTime     @default(now())
+  updated_at    DateTime     @updatedAt
+}
+
+model book_issue {
+  id               Int               @id @default(autoincrement())
+  transaction_code String            @unique
+  member_id        Int
+  book_id          Int
+  issue_date       DateTime
+  due_date         DateTime
+  return_date      DateTime?
+  status_id        Int
+  book             book              @relation(fields: [book_id], references: [id])
+  member           member            @relation(fields: [member_id], references: [id])
+  processed_by     user_account      @relation(fields: [processed_by_id], references: [id])
+  processed_by_id  Int
+  created_at       DateTime          @default(now())
+  updated_at       DateTime          @updatedAt
+  status           book_issue_status @relation(fields: [status_id], references: [id])
+}
+
+model book_issue_status {
+  id          Int          @id @default(autoincrement())
+  status      String       @unique
+  book_issues book_issue[]
 }
