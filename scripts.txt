@@ -8,6 +8,10 @@ dotenv -e .env.local.dev -- npx prisma migrate deploy
 # Test Server   ---------------------------------------------------------------------------
 dotenv -e .env.server.dev -- npx prisma migrate deploy
 
+# Production Server   ---------------------------------------------------------------------------
+dotenv -e .env.server.prod -- npx prisma migrate deploy
+
+
 # References    ---------------------------------------------------------------------------
 https://www.prisma.io/docs/orm/prisma-migrate/workflows/development-and-production
 
