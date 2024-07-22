@@ -1,3 +1,4 @@
+import express from "express";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { Express } from "express";
@@ -93,7 +94,16 @@ const options: swaggerJSDoc.Options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 const setupSwagger = (app: Express) => {
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  if (process.env.NODE_ENV === "production") {
+    app.use(
+      "/api-docs",
+      express.static("node_modules/swagger-ui-dist/", { index: false }),
+      swaggerUi.serve,
+      swaggerUi.setup(swaggerSpec)
+    );
+  } else {
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  }
 };
 
 export default setupSwagger;
