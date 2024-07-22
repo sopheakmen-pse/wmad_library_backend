@@ -10,3 +10,6 @@ dotenv -e .env.server.dev -- npx prisma migrate deploy
 
 # References    ---------------------------------------------------------------------------
 https://www.prisma.io/docs/orm/prisma-migrate/workflows/development-and-production
+
+# Live saver about swagger ----------------------------------------------------------------
+https://github.com/TomekQ13/bookstore-rest-api/blob/swagger/app/swagger.js
