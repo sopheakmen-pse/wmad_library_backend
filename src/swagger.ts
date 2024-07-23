@@ -9,6 +9,7 @@ const options: swaggerJSDoc.Options = {
       title: "WMAD LIBRARY BACKEND API",
       version: "1.0.0",
     },
+
     components: {
       securitySchemes: {
         Authorization: {
