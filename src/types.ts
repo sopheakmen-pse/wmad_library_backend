@@ -11,6 +11,32 @@ export interface MemberData {
   is_active: boolean;
 }
 
+export interface CreateUserAccountBody {
+  user_role_id: number;
+  email: string;
+  username: string;
+  password: string;
+  is_activated?: boolean;
+  is_active?: boolean;
+}
+
+export interface UpdateUserAccountBody extends Partial<CreateUserAccountBody> {}
+
+export interface UserAccountParams {
+  id: string;
+}
+
+export interface ErrorResponse {
+  message: string;
+}
+
+export class CustomError extends Error {
+  constructor(public message: string, public statusCode: number = 400) {
+    super(message);
+    this.statusCode = statusCode;
+  }
+}
+
 export const parseDate = (dateStr: string): Date | undefined => {
   const parsedDate = parse(dateStr, "yyyy-MM-dd", new Date());
   return isValid(parsedDate) ? parsedDate : undefined;
