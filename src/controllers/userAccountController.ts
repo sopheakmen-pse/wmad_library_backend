@@ -7,7 +7,6 @@ import {
   UpdateUserAccountBody,
   UserAccountParams,
   CustomError,
-  ErrorResponse,
 } from "../types";
 
 export const createUserAccount = async (

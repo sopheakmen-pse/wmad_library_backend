@@ -7,8 +7,12 @@ import userAccountRoutes from "./routes/userAccountRoutes";
 import swaggerDocs from "./swagger";
 import { authMiddleware } from "./middlewares/authMiddleware";
 
-const envFile = `.env.${process.env.NODE_ENV}`;
-dotenv.config({ path: envFile });
+if (process.env.NODE_ENV === "production") {
+  dotenv.config();
+} else {
+  const envFile = `.env.${process.env.NODE_ENV}`;
+  dotenv.config({ path: envFile });
+}
 
 const app = express();
 app.use(express.json());
