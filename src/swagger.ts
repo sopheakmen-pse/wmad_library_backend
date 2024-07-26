@@ -18,6 +18,14 @@ const options: swaggerJSDoc.Options = {
         },
       },
       schemas: {
+        ErrorResponse: {
+          type: "object",
+          properties: {
+            error: {
+              type: "string",
+            },
+          },
+        },
         Member: {
           type: "object",
           properties: {

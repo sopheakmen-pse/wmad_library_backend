@@ -204,7 +204,6 @@ router.put("/members/:id", authMiddleware, updateMember);
  *       500:
  *         description: Internal server error
  */
-
 router.delete("/members/:id", authMiddleware, deleteMember);
 
 export default router;
