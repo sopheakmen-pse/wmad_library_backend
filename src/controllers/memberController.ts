@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import prisma from "../utils/prisma";
-import { MemberData, isValidMemberData, parseDate } from "../types";
+import { isValidMemberData } from "../types";
 import ShortUniqueId from "short-unique-id";
 
 // Create a new member

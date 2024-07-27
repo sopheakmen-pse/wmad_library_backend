@@ -20,3 +20,7 @@ https://github.com/TomekQ13/bookstore-rest-api/blob/swagger/app/swagger.js
 
 # Generate prisma client to use ORM 
 npx prisma generate
+
+# Database Migration For The First Time
+INSERT INTO public.user_role(id, user_role_name) VALUES (1, 'Admin');
+INSERT INTO public.user_role(id, user_role_name) VALUES (2, 'Librarian');
