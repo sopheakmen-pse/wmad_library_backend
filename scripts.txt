@@ -18,3 +18,5 @@ https://www.prisma.io/docs/orm/prisma-migrate/workflows/development-and-producti
 # Live saver about swagger ----------------------------------------------------------------
 https://github.com/TomekQ13/bookstore-rest-api/blob/swagger/app/swagger.js
 
+# Generate prisma client to use ORM 
+npx prisma generate
