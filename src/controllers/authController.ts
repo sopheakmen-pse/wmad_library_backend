@@ -21,7 +21,7 @@ export const register = async (req: Request, res: Response) => {
     const token = generateToken(user.id);
     res.status(201).json({ token });
   } catch (err) {
-    res.status(400).json({ error: "User already exists" });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
