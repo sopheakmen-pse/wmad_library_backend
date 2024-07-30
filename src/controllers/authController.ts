@@ -19,9 +19,18 @@ export const register = async (req: Request, res: Response) => {
     });
 
     const token = generateToken(user.id);
-    res.status(201).json({ token });
-  } catch (err) {
-    res.status(500).json({ error: "Internal server error" });
+    res.status(201).json({
+      token,
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        userRoleId: user.user_role_id,
+        active: user.is_active,
+      },
+    });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -36,9 +45,18 @@ export const login = async (req: Request, res: Response) => {
     }
 
     const token = generateToken(user.id);
-    res.status(200).json({ token });
-  } catch (error) {
+    res.status(200).json({
+      token,
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        userRoleId: user.user_role_id,
+        active: user.is_active,
+      },
+    });
+  } catch (error: any) {
     console.error("Error during login:", error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: error.message });
   }
 };

@@ -12,7 +12,7 @@ interface TokenPayload {
 
 export const generateToken = (userId: number): string => {
   const payload: TokenPayload = { userId };
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" });
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: "10h" });
 };
 
 export const verifyToken = (token: string): DecodedToken => {

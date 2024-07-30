@@ -35,9 +35,7 @@ export const createUserAccount = async (
     });
     res.status(201).json(userAccount);
   } catch (error: any) {
-    const errorMessage =
-      error instanceof CustomError ? error.message : "Internal Server Error";
-    res.status(error.statusCode || 500).json({ error: errorMessage });
+    res.status(error.statusCode || 500).json({ error: error.message });
   }
 };
 
@@ -98,9 +96,7 @@ export const getUserAccountById = async (
       res.status(404).json({ error: "User account not found" });
     }
   } catch (error: any) {
-    const errorMessage =
-      error instanceof CustomError ? error.message : "Internal Server Error";
-    res.status(error.statusCode || 500).json({ error: errorMessage });
+    res.status(error.statusCode || 500).json({ error: error.message });
   }
 };
 
@@ -140,9 +136,7 @@ export const updateUserAccount = async (
     });
     res.status(200).json(userAccount);
   } catch (error: any) {
-    const errorMessage =
-      error instanceof CustomError ? error.message : "Internal Server Error";
-    res.status(error.statusCode || 500).json({ error: errorMessage });
+    res.status(error.statusCode || 500).json({ error: error.message });
   }
 };
 
@@ -155,8 +149,6 @@ export const deleteUserAccount = async (
     await prisma.user_account.delete({ where: { id: Number(id) } });
     res.status(200).json({ message: "User account deleted" });
   } catch (error: any) {
-    const errorMessage =
-      error instanceof CustomError ? error.message : "Internal Server Error";
-    res.status(error.statusCode || 500).json({ error: errorMessage });
+    res.status(error.statusCode || 500).json({ error: error.message });
   }
 };
