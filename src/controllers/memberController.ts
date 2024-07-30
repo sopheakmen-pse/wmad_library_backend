@@ -51,9 +51,9 @@ export const createMember = async (req: Request, res: Response) => {
       },
     });
     res.status(201).json(member);
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
-    res.status(500).json({ error: "Error creating member" });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -62,8 +62,8 @@ export const getMembers = async (req: Request, res: Response) => {
   try {
     const members = await prisma.member.findMany();
     res.status(200).json(members);
-  } catch (error) {
-    res.status(500).json({ error: "Error fetching members" });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -79,8 +79,8 @@ export const getMemberById = async (req: Request, res: Response) => {
     } else {
       res.status(404).json({ error: "Member not found" });
     }
-  } catch (error) {
-    res.status(500).json({ error: "Error fetching member" });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -131,8 +131,8 @@ export const updateMember = async (req: Request, res: Response) => {
       },
     });
     res.status(200).json(updatedMember);
-  } catch (error) {
-    res.status(500).json({ error: "Error updating member" });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -144,7 +144,7 @@ export const deleteMember = async (req: Request, res: Response) => {
       where: { id: Number(id) },
     });
     res.status(204).end();
-  } catch (error) {
-    res.status(500).json({ error: "Error deleting member" });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 };
