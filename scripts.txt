@@ -23,3 +23,7 @@ npx prisma generate
 # Database Migration For The First Time
 INSERT INTO public.user_role(id, user_role_name) VALUES (1, 'Admin');
 INSERT INTO public.user_role(id, user_role_name) VALUES (2, 'Librarian');
+INSERT INTO public.book_issue_status(id, status) VALUES (1, 'Checked Out');
+INSERT INTO public.book_issue_status(id, status) VALUES (2, 'Returned');
+
+

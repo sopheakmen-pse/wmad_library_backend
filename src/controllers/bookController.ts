@@ -1,6 +1,38 @@
 import { Request, Response } from "express";
 import prisma from "../utils/prisma";
-import { CustomError } from "../types";
+
+const getPaginatedBooks = async (page: number, pageSize: number) => {
+  const skip = (page - 1) * pageSize;
+  const take = pageSize;
+
+  const [books, totalCount] = await Promise.all([
+    prisma.book.findMany({
+      skip,
+      take,
+      orderBy: { title: "asc" },
+    }),
+    prisma.book.count(),
+  ]);
+
+  return {
+    data: books,
+    totalCount,
+    totalPages: Math.ceil(totalCount / pageSize),
+    currentPage: page,
+  };
+};
+
+export const getAllBookPagination = async (req: Request, res: Response) => {
+  const page = parseInt(req.query.page as string) || 1;
+  const pageSize = parseInt(req.query.pageSize as string) || 10;
+
+  try {
+    const result = await getPaginatedBooks(page, pageSize);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 export const createBook = async (req: Request, res: Response) => {
   const {
@@ -56,7 +88,21 @@ export const getBookById = async (req: Request, res: Response) => {
     if (book) {
       res.status(200).json(book);
     } else {
-      throw new CustomError("Book not found", 404);
+      res.status(404).json({ error: "Book not found" });
+    }
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getBookByISBN = async (req: Request, res: Response) => {
+  const { isbn } = req.params;
+  try {
+    const book = await prisma.book.findUnique({ where: { isbn: isbn } });
+    if (book) {
+      res.status(200).json(book);
+    } else {
+      res.status(404).json({ error: "Book not found" });
     }
   } catch (error: any) {
     res.status(500).json({ error: error.message });

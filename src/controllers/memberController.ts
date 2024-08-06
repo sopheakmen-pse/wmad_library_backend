@@ -84,6 +84,23 @@ export const getMemberById = async (req: Request, res: Response) => {
   }
 };
 
+// Get a single member by code
+export const getMemberByCode = async (req: Request, res: Response) => {
+  try {
+    const { code } = req.params;
+    const member = await prisma.member.findUnique({
+      where: { member_code: code },
+    });
+    if (member) {
+      res.status(200).json(member);
+    } else {
+      res.status(404).json({ error: "Member not found" });
+    }
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // Update a member
 export const updateMember = async (req: Request, res: Response) => {
   try {

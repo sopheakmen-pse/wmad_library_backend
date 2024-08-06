@@ -28,7 +28,7 @@ const router = Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/BookIssue'
+ *               $ref: '#/components/schemas/BookIssueTransaction'
  *       400:
  *         description: Bad request
  *         content:
@@ -123,7 +123,7 @@ router.get("/book_issues/:id", getBookIssueById);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/BookIssue'
+ *               $ref: '#/components/schemas/BookIssueTransaction'
  *       404:
  *         description: Book issue not found
  *         content:

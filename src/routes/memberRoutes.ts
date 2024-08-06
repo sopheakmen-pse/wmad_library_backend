@@ -5,6 +5,7 @@ import {
   getMemberById,
   updateMember,
   deleteMember,
+  getMemberByCode,
 } from "../controllers/memberController";
 import { authMiddleware } from "../middlewares/authMiddleware";
 
@@ -118,6 +119,38 @@ router.get("/members", authMiddleware, getMembers);
  *         description: Internal server error
  */
 router.get("/members/:id", authMiddleware, getMemberById);
+
+/**
+ * @swagger
+ * /api/members/code/{code}:
+ *   get:
+ *     summary: Retrieve a member by code
+ *     tags: [Members]
+ *     description: Get a single member's details by their code.
+ *     security:
+ *       - Authorization: []
+ *     parameters:
+ *       - in: path
+ *         name: code
+ *         required: true
+ *         description: code of the member to retrieve
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Member details
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Member'
+ *       404:
+ *         description: Member not found
+ *       401:
+ *         description: "Unauthorized"
+ *       500:
+ *         description: Internal server error
+ */
+router.get("/members/code/:code", authMiddleware, getMemberByCode);
 
 /**
  * @swagger
