@@ -79,21 +79,19 @@ const options: swaggerJSDoc.Options = {
         CreateBookIssueBody: {
           type: "object",
           properties: {
-            transaction_code: { type: "string" },
             member_id: { type: "integer" },
             book_id: { type: "integer" },
-            issue_date: { type: "string", format: "date-time" },
-            due_date: { type: "string", format: "date-time" },
+            issue_date: { type: "string", format: "date" },
+            due_date: { type: "string", format: "date" },
             return_date: {
               type: "string",
-              format: "date-time",
+              format: "date",
               nullable: true,
             },
             status_id: { type: "integer" },
             processed_by_id: { type: "integer" },
           },
           required: [
-            "transaction_code",
             "member_id",
             "book_id",
             "issue_date",
@@ -102,17 +100,53 @@ const options: swaggerJSDoc.Options = {
             "processed_by_id",
           ],
         },
-        UpdateBookIssueBody: {
+        BookIssueTransaction: {
           type: "object",
           properties: {
-            transaction_code: { type: "string" },
-            member_id: { type: "integer" },
-            book_id: { type: "integer" },
-            issue_date: { type: "string", format: "date-time" },
-            due_date: { type: "string", format: "date-time" },
+            id: { type: "integer", example: 5 },
+            transaction_code: { type: "string", example: "VB0SOR" },
+            member_id: { type: "integer", example: 2 },
+            book_id: { type: "integer", example: 1 },
+            issue_date: {
+              type: "string",
+              format: "date-time",
+              example: "2024-08-05T17:00:00.000Z",
+            },
+            due_date: {
+              type: "string",
+              format: "date-time",
+              example: "2024-08-09T17:00:00.000Z",
+            },
             return_date: {
               type: "string",
               format: "date-time",
+              nullable: true,
+              example: null,
+            },
+            status_id: { type: "integer", example: 1 },
+            processed_by_id: { type: "integer", example: 1 },
+            created_at: {
+              type: "string",
+              format: "date-time",
+              example: "2024-08-06T03:18:12.739Z",
+            },
+            updated_at: {
+              type: "string",
+              format: "date-time",
+              example: "2024-08-06T03:18:12.739Z",
+            },
+          },
+        },
+        UpdateBookIssueBody: {
+          type: "object",
+          properties: {
+            member_id: { type: "integer" },
+            book_id: { type: "integer" },
+            issue_date: { type: "string", format: "date" },
+            due_date: { type: "string", format: "date" },
+            return_date: {
+              type: "string",
+              format: "date",
               nullable: true,
             },
             status_id: { type: "integer" },
@@ -122,25 +156,74 @@ const options: swaggerJSDoc.Options = {
         BookIssue: {
           type: "object",
           properties: {
-            id: { type: "integer" },
-            transaction_code: { type: "string" },
-            member_id: { type: "integer" },
-            book_id: { type: "integer" },
-            issue_date: { type: "string", format: "date-time" },
-            due_date: { type: "string", format: "date-time" },
+            id: { type: "integer", example: 5 },
+            transaction_code: { type: "string", example: "VB0SOR" },
+            member_id: { type: "integer", example: 2 },
+            book_id: { type: "integer", example: 1 },
+            issue_date: {
+              type: "string",
+              format: "date-time",
+              example: "2024-08-05T17:00:00.000Z",
+            },
+            due_date: {
+              type: "string",
+              format: "date-time",
+              example: "2024-08-09T17:00:00.000Z",
+            },
             return_date: {
               type: "string",
               format: "date-time",
               nullable: true,
+              example: null,
             },
-            status_id: { type: "integer" },
-            processed_by_id: { type: "integer" },
-            created_at: { type: "string", format: "date-time" },
-            updated_at: { type: "string", format: "date-time" },
-            book: { $ref: "#/components/schemas/Book" },
-            member: { $ref: "#/components/schemas/Member" },
-            processed_by: { $ref: "#/components/schemas/UserAccount" },
-            status: { $ref: "#/components/schemas/BookIssueStatus" },
+            status_id: { type: "integer", example: 1 },
+            processed_by_id: { type: "integer", example: 1 },
+            created_at: {
+              type: "string",
+              format: "date-time",
+              example: "2024-08-06T03:18:12.739Z",
+            },
+            updated_at: {
+              type: "string",
+              format: "date-time",
+              example: "2024-08-06T03:18:12.739Z",
+            },
+            book: {
+              type: "object",
+              properties: {
+                id: { type: "integer", example: 1 },
+                isbn: {
+                  type: "string",
+                  example: "7e146ad9-0ef8-42c5-8a8d-e2c7e3c7b22f",
+                },
+                title: { type: "string", example: "voluptatem alias beatae" },
+              },
+            },
+            member: {
+              type: "object",
+              properties: {
+                id: { type: "integer", example: 2 },
+                member_code: { type: "string", example: "nMolPP" },
+                fullname: { type: "string", example: "Sophea Men" },
+                is_active: { type: "boolean", example: true },
+              },
+            },
+            processed_by: {
+              type: "object",
+              properties: {
+                id: { type: "integer", example: 1 },
+                username: { type: "string", example: "admin" },
+                email: { type: "string", example: "admin@wmad.demo" },
+                user_role_name: { type: "string", example: "Admin" },
+              },
+            },
+            status: {
+              type: "object",
+              properties: {
+                id: { type: "integer", example: 1 },
+                name: { type: "string", example: "Checked Out" },
+              },
+            },
           },
         },
         UserAccount: {
