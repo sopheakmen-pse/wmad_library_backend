@@ -18,6 +18,15 @@ const options: swaggerJSDoc.Options = {
         },
       },
       schemas: {
+        Author: {
+          type: "object",
+          properties: {
+            firstName: { type: "string" },
+            lastName: { type: "string" },
+            bio: { type: "string" },
+          },
+          required: ["firstName", "lastName"],
+        },
         ErrorResponse: {
           type: "object",
           properties: {

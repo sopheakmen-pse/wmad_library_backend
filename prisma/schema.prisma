@@ -86,3 +86,10 @@ model book_issue_status {
   status      String       @unique
   book_issues book_issue[]
 }
+
+model author {
+  id        Int     @id @default(autoincrement())
+  firstName String
+  lastName  String
+  bio       String?
+}
