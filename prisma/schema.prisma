@@ -92,4 +92,5 @@ model author {
   firstName String
   lastName  String
   bio       String?
+  createdBy String?
 }
